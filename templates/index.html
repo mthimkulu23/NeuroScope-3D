@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>NeuroScope 3D | Real-time Surgical AR</title>
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <!-- Bootstrap 5 -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+
+<body>
+
+    <!-- AR HUD Decoration -->
+    <div class="hud-overlay"></div>
+    <div class="hud-corner top-left"></div>
+    <div class="hud-corner top-right"></div>
+    <div class="hud-corner bottom-left"></div>
+    <div class="hud-corner bottom-right"></div>
+
+    <!-- 3D Visualization Canvas -->
+    <div id="viewport-3d"></div>
+
+    <!-- MRI Overlay Container -->
+    <div id="mri-container" class="glass-panel">
+        <div class="scan-line scan-anim"></div>
+        <img src="{{ url_for('static', filename='assets/mri_slice.png') }}" alt="MRI Scan">
+        <div class="medical-label p-2" style="position: absolute; bottom: 0; background: rgba(0,0,0,0.5); width: 100%;">
+            AXIAL VIEW - T1 WEIGHTED</div>
+    </div>
+
+    <!-- Sidebar UI -->
+    <div class="sidebar glass-panel">
+        <div class="patient-info-header">
+            <h4 class="mb-0">NEUROSCOPE <span style="color: var(--accent-cyan)">3D</span></h4>
+            <div class="medical-label">Surgical AR Interface v1.0</div>
+        </div>
+
+        <div class="mb-4">
+            <div class="medical-label">Patient ID</div>
+            <div class="value-display">PX-8829-B</div>
+        </div>
+
+        <div class="mb-4">
+            <div class="medical-label">Current Status</div>
+            <div><span class="status-indicator"></span><span style="color: #00ff88">PRE-OP SCANNING</span></div>
+        </div>
+
+        <div class="mb-4">
+            <div class="medical-label">Brain Region</div>
+            <div class="value-display">PARIETAL LOBE</div>
+        </div>
+
+        <hr style="border-top: 1px solid var(--panel-border);">
+
+        <div class="controls mt-auto">
+            <button class="btn btn-outline-info w-100 mb-2" id="toggle-tracts">TOGGLE TRACTOGRAPHY</button>
+            <button class="btn btn-outline-light w-100 mb-2" id="toggle-mri">MRI OVERLAY</button>
+            <button class="btn btn-primary w-100" id="start-surgical">START SURGICAL AR</button>
+        </div>
+    </div>
+
+    <!-- Three.js Library -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/0.158.0/three.min.js"></script>
+    <!-- GSAP for Smooth Animations -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+    <!-- Custom JS -->
+    <script src="{{ url_for('static', filename='js/main.js') }}"></script>
+</body>
+
+</html>
